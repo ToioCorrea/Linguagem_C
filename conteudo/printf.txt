@@ -1,0 +1,159 @@
+CARACTERERS ESPECIAIS:
+\a = soa alarme do computador
+\b = o cursor retrocede(backspace)
+\f = alimenta págia na impressora
+\n = o cursor avança para uma nova linha 
+\r = o cursor retrocede para o inicio da linha
+\t = tabulação horizontal
+\v = tabulação vertical 
+\" = exibe aspas dupla 
+\' = Exibe aspas simples (apóstrafo)
+\\ = Exibe uma barra invertida
+
+CODIGOS DE FORMATAÇÃO:
+%c  = caracter simples                         (char)
+%s  = cadeia de caracteres:string              (int ou char)
+%d  = numero inteiro com sinal                 (unsigned)
+%u  = numero inteiro sem sinal
+%ld = numero inteiro longo com sinal           (float ou double)
+%f  = numero em ponto flutuante
+%lf = numero em ponto flutuante longo:double
+%e  = numero em notação cientifica
+%o  = numero octal (base 8)
+%x  = numero hexadecimal (base 16) 
+%p  = valor armazenado em um ponteiro:endereço
+
+Permitem controlar:
+
+- o tamanho mínimo para impressão de um campo
+- a precisão e o arredondamento em campos de ponto flutuante 
+- o alinhamento á direita ou á esquerda
+
+PRINTF:
+
+Função: impressão de dados formatados na saída padrão
+Definida na biblioteca padrão C (stdio.h)
+Permite o uso de caracteres especiais e codigos de formatação 
+Permite a leitura de dados formatados da entrada padrão(teclado);
+Aguarda a digitação dos dados pelo usuário e atribui o valor digitado a uma variável;
+
+SINTAXE:
+
+printf("<Texto para impressão>", <expressão1>, expressão2>...);
+
+>>>>> TEXTO PARA IMPRESSÃO =  o que será impresso na tela, podendo incluir caracteres especiais e códigos de formatação 
+>>>>> EXPRESSÃO =  argumento opcional que indica um valor que será impresso em TEXTO PARA IMPRESSÃO. 
+                   podendo ser constante, variável, expressão ou chamada a outra função 
+
+
+EXEMPLOS:
+
+1) Constante 
+
+ENTRADA: 
+#include <stdio.h>
+#define CASA "sala"
+int main()
+{
+printf ("Você está na %s", CASA);
+return 0;
+}
+SAIDA:
+Você está na sala
+
+2) Variáveis e Expressão 
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int nota1 = 8, nota2 = 10;
+printf ("A sua média é: %d", (nota1+nota2)/2);
+return 0;
+}
+SAIDA: A sua média é: 9
+
+3) Caracteres e Strings
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+printf ("%s %s %s \n","teste1", "teste2", "teste3");
+printf ("A letra %c pronuncia-se %s \n", 'j', "jota");
+printf ("A letra \'%c\' pronuncia-se \'%s\'", 'j', "jota");
+return 0;
+}
+SAIDA:
+teste1 teste2 teste3
+A letra j pronuncia-se jora
+A letra 'j' pronuncia-se 'jota'
+
+4) Int 
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int a = 438;
+printf (" |%d| \n", a);
+printf (" |%2d| \n", a);
+printf (" |%6d| \n", a);
+printf (" |%-6d| \n", a);
+printf (" |%06d| \n", a);
+return 0;
+}
+SAIDA:
+|438|
+|438|
+|   438|
+|438   |
+|000438|
+
+   
+5)Float
+ENTRADA:
+#include <stdio.h> 
+int main() {
+float b = 65.1238;
+printf ("|%f|\n", b);
+printf ("|%5f| \n", b);
+printf ("|%9.1f| \n", b);
+printf ("|%-9.1f| \n", b);
+printf ("|%09.3f| \n", b);
+return 0;
+}
+SAIDA: Padrão de 6 casas decimais
+|65.123802|
+|65.123802|
+|     65.1|
+|65.1     |
+|00065.124|
+
+6) Tabela ASCII
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+printf ("%c %d %x %o \n", 'A' , 'A' , 'A' , 'A');
+printf ("%c %c %c %c \n", 'A' , 65 , 0x41 , 0101);
+return 0;
+}
+SAIDA:
+A 65 41 101
+A A A A 
+
+7)Função
+ENTRADA: 
+#include <stdio.h>
+int Atualiza(int a)
+{
+a = a * 2 + 3;
+
+return a;
+}
+int main()
+{
+int x = 4;
+printf (" x atual = %d", Atualiza(x));
+return 0;
+}
+SAIDA:
+x atual = 11 
