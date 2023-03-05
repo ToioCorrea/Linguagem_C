@@ -1,0 +1,220 @@
+CONHECIMENTOS INICIAIS PARA CONSTRUÇÃO DE UM PROGRAMA:
+
+
+Uma linguagem de programação envolve dois aspectos principais:
+
+Sintaxe: descreve a forma das expressões e comandos.
+Ex: if(<expressão>) <instrução>
+
+Semântica: descreve o significado das expressões e comandos.
+Ex: se o valor atual da expressão for verdadeiro, a instrução será executada.
+
+
+
+
+- Um programa em C é um arquivo texto, chamado código-fonte, que contém a tradução de um algoritmo para a linguagem C;
+- Este arquivo contém as declarações e as instruções do programa, escritas conforme a sintaxe da linguagem.
+- Todas as instruções devem estar dentro das chaves que iniciam e encerram a função (“{“ e “}”);
+- São executadas na ordem em que são escritas
+- As instruções em C sempre são encerradas com ponto-e-vírgula (“;”);
+- Os parâmetros ou argumentos de uma instrução são passados dentro dos parêntesis (vide printf())
+- Comentários em um programa correspondem a porções de texto que são desconsideradas pelo compilador ou interpretador;
+- Comentários de múltiplas linhas (entre /* e */):
+
+
+
+/*Meu primeiro programa em C*/       = COMENTÁRIO (linha 28)
+#include <stdio.h>                   = Informar o compilador para incluir a biblioteca padrão de entrada/saída((stdio.h))(linha 27)
+int main() {                         = função principal do programa (linhas 28 a 31)
+printf(“Hello, world!\n”);           = função que imprime texto na tela ; \n = Quebra de linha
+return 0;
+}
+
+Salvo no Arquivo HELLO.c 
+
+
+COMO EXECUTAR O PROGRAMA HELLO.c:
+
+Para executar o programa hello.c, o primeiro passo é compilar o código-fonte, para que o executável seja gerado;
+
+$ gcc hello.c –o hello        gcc = Chamada do compilador ; hello.c = nome do arquivo-fonte ; -o hello = nome do arquivo executável
+$ ./hello                     ./hello = execução do programa
+
+saida: 
+Hello, world! 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+TIPOS DE DADOS:
+
+
+char   = caracter 
+int    = numero inteiro 
+float  =  numero real 
+double = numero real com precisão maior do que a de float 
+void   = vazio(sem valor)
+
+Representam os nomes escolhidos para rotular as constantes, as variáveis e as funções do programa.
+
+Podem ser qualquer palavra que:
+- Não seja uma palavra reservada da linguagem (ex.: if, printf, return, ...).
+- Seja formada apenas por letras, números e underline “_”.
+- Não inicie com número.
+- Não contenha espaços entre os caracteres.
+
+Observações:
+- C é uma linguagem case-sensitive, ou seja, faz diferença entre nomes com letras maiúsculas e nomes com letras minúsculas (“Peso” e “peso” são identificadores diferentes).
+- Deve-se usar nomes significativos dentro do contexto do programa.
+- As constantes, variáveis e funções devem ser declaradas antes de serem utilizadas.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+CONSTANTES:
+
+Uma constante, como o próprio nome diz, tem valor fixo e inalterável.
+São identificadores associados a valor fixo e inalterável, ou seja, valor que não sofre modificação ao longo da execução do programa.Recomenda-se utilizar letras maiúsculas para declarar constantes.
+
+Uma constante pode ser:
+-um número (inteiro ou real),
+-uma sequência de caracteres (texto) ou
+-um valor lógico (verdadeiro ou falso).
+
+Constantes são definidas com a diretiva DEFINE ou com o comando CONST:
+
+Diretiva “define”
+
+Sintaxe: #define <nome_da_constante> <valor>
+
+- O pré-processador substitui todas as ocorrências do identificador ao longo do programa pelo seu valor antes da compilação;
+- Não usa espaço da memória RAM;
+- A declaração da constante deve ser feita no início do programa;
+- Facilita a manutenção do código e torna o programa mais legível.
+
+EXEMPLO:
+
+#include <stdio.h>
+#define PI 3.14
+int main()
+{
+...
+comp = 2 * PI * raio;
+return 0;
+}
+
+
+Comando “const”
+
+Sintaxe: const <tipo_de_dado> < nome_da_constante > = <valor>;
+- Declara uma constante para um tipo de dado específico;
+- Usa espaço na memória RAM;
+- O programa não compila se houver no código novo comando de atribuição para a constante (assignment of read-only variable).
+
+EXEMPLOS:
+
+1)
+#include <stdio.h>
+int main()
+{
+const float PI = 3.14;
+...
+comp = 2 * PI * raio;
+return 0;
+}
+
+2)
+
+ENTRADA:
+#include <stdio.h>
+int main(){
+const int x = 10;
+printf (" Endereço de x = %p \n", &x);
+printf (" Conteúdo de x = %d \n\n", x);
+return 0;
+}
+
+SAIDA:
+Endereço de x = 0x7ffcc25258eb
+Conteúdo de x = 10
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+VARIÁVEIS:
+
+Correspondem a um espaço de memória reservado para armazenar um certo tipo de dado;
+São identificadores cujo conteúdo pode variar durante a execução do programa.Embora uma variável possa assumir diferentes valores ela só pode armazenar um único valor a cada instante.
+
+Declarando uma variável em C:
+• int num; // declara uma variável chamada “num”, que
+           // armazena valores do tipo inteiro (números inteiros)
+• Atribuindo um valor a uma variável (já declarada):
+ • num = 3;
+
+Uma variável pode ser:
+- um número (inteiro ou real),
+- uma sequência de caracteres (texto) ou
+- um valor lógico (verdadeiro ou falso).
+
+char: guarda um caractere;
+int: guarda um número inteiro;
+float: guarda um valor real com certa precisão;
+double: guarda um valor real com precisão maior que a de float;
+void: tipo vazio (sem valor).
+unsigned char: caractere sem sinal (lembrar que um caractere pode ser interpretado como um número);
+long int: número inteiro com domínio ampliado;
+unsigned int: número inteiro sem sinal (positivo);
+unsigned long int: número inteiro sem sinal com domínio ampliado;
+short int: número inteiro com domínio reduzido;
+unsigned short int: número inteiro sem sinal com domínio reduzido.
+
+Variáveis devem ser declaradas e a elas deve ser atribuído um valor.
+
+DECLARAÇÃO DE VARIÁVEIS:
+
+Declarar uma variável significa reservar um espaço de memória (endereço) para armazenar seu valor de acordo com o tipo de dado definido na instrução de declaração.
+
+Sintaxe: <tipo-de-dado> <nome-da-variável>
+
+Exemplos
+• char letra;
+• int num;
+• float valor;
+• double rendimento;
+• int num1, num2;
+
+
+ATRIBUIÇÃO DE VARIÁVEIS:
+
+Atribuir um valor à uma variável significa fornecer a ela tal valor para que seja armazenado na memória.Uma atribuição só será válida se o valor atribuído for do mesmo tipo de dado da variável.
+
+Sintaxe: < nome-da-variável > = <valor-da-variável>
+
+Exemplos
+• letra = ‘a’;
+• num = 1;
+• valor = 2.45;
+• rend = 0.287651;
+• num1 = 10, num2 = 20;
+
+Observação: Uma única instrução pode conter tanto a declaração quanto a atribuição a variáveis.
+Exemplo: int num = 1;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+MODIFICADORES DOS TIPOS DE DADOS:
+
+Alteram o tamanho do tipo de dado e/ou sua forma de representação. A linguagem C disponibiliza quatro modificadores de tipo de dado: signed, unsigned, long e short.
+
+Exemplos:
+• signed int (corresponde ao padrão de utilização do bit de sinal – raramente usado)
+• unsigned int (o bit de sinal é usado para representar um valor)
+• long int (número inteiro com domínio ampliado)
+• short int (número inteiro com domínio reduzido)
+• unsigned short int (número inteiro sem sinal e com domínio reduzido)
+
+Observações:
+- Os modificadores podem prefixar apenas os tipos char, int e double.
+- Uma única declaração pode combinar até dois modificadores.
+
+
