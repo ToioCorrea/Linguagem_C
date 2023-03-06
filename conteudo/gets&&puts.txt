@@ -1,0 +1,72 @@
+gets:
+
+
+
+A função gets lê uma linha do fluxo de entrada padrão stdin e a armazena em buffer
+
+
+
+char* gets(char*string);
+
+retorna a propria string passada
+
+
+EXEMPLOS:
+
+1)
+ENTRADA:
+#include <stdio.h>
+
+int main( void )
+{
+   char line[21]; 
+   gets( line );  
+   
+   printf( "The line entered was: %s\n", line );
+   }
+SAIDA:
+Hello there!The line entered was: Hello there!   
+
+
+2)
+ENTRADA:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+
+    char palavras[10] = {"Oi. Vamos aprender a programar com a linguagem C?"};
+
+    printf("Digite seu nome: ");
+    gets(palavras);
+
+    printf("%s\n\n", palavras);
+
+    return 0;
+}
+SAIDA:
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+puts:
+
+
+int puts (char *s);
+
+puts() coloca a string s na tela.
+
+EXEMPLO:
+
+1)
+ENTRADA:
+#include <stdio.h>
+
+int main() {
+    puts("Olá mundo!"); 
+    return 0;
+}
+SAIDA:
+Óla mundo!
+
+
