@@ -1,0 +1,26 @@
+getchar()
+
+
+Função para leitura de caracteres isolados na entrada padrão (stdin - teclado).
+A função getchar() não recebe parâmetros de entrada. A função retorna
+
+Sintaxe: <variável de entrada> = getchar();
+
+EXEMPLOS:
+
+1)
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+char c;
+printf ("Digite um caractere: ");
+c = getchar();
+printf ("Caractere \'%c\' salvo no endereço %p",c, &c);
+return 0;
+}
+SAIDA:
+Digite um caractere: A 
+Caractere 'A' salvo no endereço 0x7ffd0e28dff
+
+
