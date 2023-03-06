@@ -1,0 +1,69 @@
+SCANF:
+
+
+
+Função para leitura de dados da entrada padrão (stdin - teclado), armazenado-os em variáveis.
+Aguarda a digitação dos dados pelo usuário e atribui o valor digitado a uma variável;
+
+
+Endereço de uma variável = endereço da posição de memória a ela associada.
+Endereço de uma variável: dado pelo operador & (address-of).
+Exemplo: scanf("%d",&n);
+
+
+Sintaxe: scanf(“<string de entrada>”, &<variável1>, &<variável2>, ...);
+
+- string de entrada = contém códigos de formatação que representam os tipos das variáveis. Pode apresentar caracteres que devem ser digitados junto com as variáveis.
+- & (address-of) = endereço da posição de memória associada à variável.
+- variável = variável que receberá o valor digitado. Para mais de uma variável, separar cada valor digitado por um espaço em branco, uma tabulação, um enter, ou pelo caracter definido em string de entrada.
+
+
+EXEMPLOS:
+
+1)
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+char c;
+printf ("Digite um caractere: ");
+scanf ("%c", &c);
+printf ("Caractere \'%c\' salvo no endereço %p",c, &c);
+return 0;
+}
+SAIDA:
+Digite um caracter: 
+Caractere 'A' salvo no endereço 0x7ffd0e028dff
+
+2)
+ENTRADA:
+#include <stdio.h>
+#define PI 3.14
+int main()
+{
+double raio, comprimento;
+printf ("Quanto mede o raio? ");
+scanf ("%lf", &raio);
+comprimento = 2*PI*raio;
+printf ("O comprimento da circunferência é %5.2lf", comprimento);
+return 0;
+}
+SAIDA:
+Quanto mede o raio? 4
+O comprimento da circunferência é 25.12
+
+3)
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+float nota1, nota2, nota3;
+printf ("Digite as três notas do aluno: ");
+scanf ("%f %f %f", &nota1, &nota2, &nota3);
+printf ("A média aritmética é %5.2f", (nota1 + nota2 + nota3)/3);
+return 0;
+}
+SAIDA:
+Digite as três notas do aluno: 6 8 10
+A média aritmética é 8.00
+
