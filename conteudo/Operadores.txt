@@ -367,3 +367,50 @@ return 0;
 SAIDA:
 1
 0
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+OPERADORES LÓGICOS:
+
+O uso do operador condicional pode substituir o comando if-else.(EXPLICAÇÃO AULA POSTERIOR)
+Ele deixa tais expressões mais “compactas”.
+
+Sintaxe:
+condição ? instrução-A : instrução-B;
+
+- condição: expressão lógica.
+- instrução-A: executada caso a condição seja verdadeira.
+- instrução-B: executada caso a condição seja falsa.
+
+
+• A linguagem C oferece três operadores chamados lógicos:
+      - Operador lógico E (&&):
+            - (exp1 && exp2): é verdadeira se tanto exp1 quanto exp2 forem verdadeiras.
+
+• Operador lógico OU (||):
+      - (exp1 || exp2): é verdadeira se exp1 ou exp2 forem verdadeiras e se exp1 e exp2 forem verdadeiras.
+
+• Operador lógico de negação (NOT):
+      - É um operador unário;
+      - (!exp1) é verdadeira se exp1 for falsa e vice-versa.
+
+
+
+EXEMPLO:
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int x, y;
+printf ("Informe dois valores:\n");
+scanf ("%d %d", &x, &y);
+printf ("Máximo = %d", x>y ? x : y);
+return 0;
+}
+SAIDA:
+Informe dois valores:
+8
+5
+Máximo = 8
