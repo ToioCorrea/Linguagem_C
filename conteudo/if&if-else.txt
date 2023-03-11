@@ -1,0 +1,188 @@
+COMANDO if:
+
+Sintaxe:
+
+if (condição)
+   instrução;
+
+- condição = expressão lógica. Se for verdadeira a instrução é executada.
+- instrução = código a ser executado caso a condição seja verdadeira.
+
+Observação: recomenda-se o uso da indentação (espaçamento extra para instruções internas a estruturas de decisão, repetição, funções, etc).
+
+EXEMPLO:
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+char c;
+printf ("Você quer ver uma mensagem na tela <s/n>?");
+scanf ("%c", &c);
+if (c == ‘s’ || c==‘S’)
+printf ("Você escolheu sim!");
+return 0;
+}
+SAIDA:
+Você quer ver uma mensagem na tela <s/n>?
+Você escolheu sim!
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Comando if - bloco de instruções
+
+Usado para execução condicional de um bloco de instruções.
+
+Sintaxe:
+if (condição)
+{
+    instrução-1;
+    instrução-2;
+    ...
+    instrução-n;
+}
+
+Um bloco de instruções (instrução-1; instrução-2; ... instrução-n;) sempre deve ser delimitado por chaves {}. Sem elas o programa compila mas apresenta erro lógico.
+
+EXEMPLO:
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+    float nota1, nota2, media;
+    printf ("Informe as duas notas: \n");
+    scanf ("%f %f", &nota1, &nota2);
+    media = (nota1 + nota2) / 2;
+    if (media > 5)
+    {
+        printf ("Média: %5.2f\n", media);
+        printf ("Aluno aprovado!");
+    }
+    return 0;
+}
+SAIDA:
+Informe as duas notas:
+6
+8
+Média: 7.00
+Aluno Aprovado!
+
+
+Atenção: esquecer de colocar a instruções de um bloco entre “{“ “}” é um erro lógico;
+        -O programa irá compilar mas não gerará o resultado esperado.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+O comando if - encadeado:
+
+Sintaxe:
+if (condição)
+{
+    instruções;
+    if (condição)
+    {
+    instruções;
+    }
+}
+
+Novamente cada comando if pode ter uma ou várias instruções. Para várias instruções as chaves são necessárias.
+
+EXEMPLO:
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int faltas;
+float nota1, nota2, media;
+printf ("Informe o número de faltas: \n");
+scanf ("%d", &faltas);
+if (faltas < 3)
+{
+    printf ("Informe as duas nota: \n");
+    scanf ("%f %f", &nota1, &nota2);
+    media = (nota1 + nota2) / 2;
+    if (media > 5)
+        printf("Aluno aprovado com média %5.2f.", media);
+}
+return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+o COMANDO if - else 
+
+Para o comando if – else podem ser definidas instruções a serem executadas caso a condição seja verdadeira e instruções a serem executadas caso a condição seja falsa.
+
+As comparações seguintes somente são feitas se as anteriores forem falsas;
+
+Sintaxe:
+if (condição)
+{
+instruções-A;
+}
+else
+{
+instruções-B;
+}
+
+- instruções-A;
+    executadas se a condição for verdadeira.
+- instruções-B;
+    executadas se a condição for falsa.
+
+EXEMPLO:
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int faltas;
+float nota1, nota2, media;
+printf ("Digite faltas, nota1 e nota2:\n");
+scanf ("%d %f %f", &faltas, &nota1, &nota2);
+media = (nota1 + nota2) / 2;
+if (faltas < 3 && media > 5)
+    printf ("Aluno aprovado com %d faltas e média %4.2f. \n", faltas, media);
+    else
+        printf ("Aluno reprovado!");
+    return 0;
+}
+SAIDA:
+Digite faltas, nota1 e nota2:
+2
+6
+8
+Aluno aaprovado com 2 faltas e média 7.00.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+O COMANDO if - else (encadeado)
+
+EXEMPLO:
+#include <stdio.h>
+int main()
+{
+int faltas;
+float nota1, nota2, media;
+printf ("Digite faltas, nota1 e nota2:\n");
+scanf ("%d %f %f", &faltas, &nota1, &nota2);
+media = (nota1 + nota2) / 2;
+    if (faltas < 3 && media > 5)
+        printf ("Aluno aprovado (%d faltas e média = %4.2f). \n", faltas, media);
+    else
+        if (faltas >= 3)
+        printf ("Aluno reprovado por faltas (%d faltas).", faltas);
+        else
+        printf ("Aluno reprovado por nota (média = %4.2f ).", media);
+    return 0;
+}
+SAIDA:
+Digite faltas, nota1 e nota2:
+2
+4
+5
+Aluno reprovado por nota (média = 4.50 ).
+
