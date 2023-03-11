@@ -1,0 +1,146 @@
+COMANDO switch:
+
+• Opção 1: usar múltiplos if-else aninhados
+    Resolve o problema, mas deixa o código confuso e pouco elegante.
+• Opção 2: usar o comando switch
+    Similar a if-else aninhado, mas com maior flexibilidade e com formato mais limpo e claro.
+
+switch (expressão constante)
+{
+    case constante-1:
+        instruções;
+        break;
+    case constante-2:
+        instruções;
+        break;
+    ...
+    default:
+        instruções;
+}
+
+
+- Expressão constante e constante devem ser do tipo char ou int.
+- NÃO é possível usar variáveis ou expressões para as constantes.
+- O corpo do switch deve estar entre “{}”. A constante de cada case deve ser finalizada com “:”. Caso múltiplas instruções sigam um case não é necessário envolvê-las em “{}”.
+- O caso default é opcional e, embora seja geralmente posicionado no final do bloco switch, ele pode aparecer em qualquer posição entre os case´s especificados.
+
+• O comando switch avalia a expressão entre parênteses e compara o resultado com os rótulos dados após os termos “case” (constante1,
+constante2, ...);
+    -A expressão entre parênteses deve resultar em valor inteiro ou caractere.
+
+• Caso múltiplas instruções sigam um case, não é necessário envolvê-las em chaves.
+    -O corpo do switch deve estar entre chaves.
+
+• Cada case deve ser rotulado por uma constante do tipo inteiro ou caractere e terminado por “:” (dois pontos);
+    -NÃO é possível usar variáveis ou expressões para os rótulos.
+
+• Se o rótulo de um case for igual à expressão, a execução começa nele.
+    -Se não houver nenhum rótulo igual e existir um default, a execução começa nele. 
+    
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+COMANDO switch com break:
+
+EXEMPLO:
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int numA = 8, numB = 2; char op;
+printf ("Escolha um operador: < + - * / > ");
+op = getchar();
+switch(op) {
+    case '+':
+        printf ("Soma = %d\n", numA + numB); break;
+    case '-':
+        printf ("Subtração = %d\n", numA - numB); break;
+    case '*':
+        printf ("Multiplicação = %d\n", numA * numB); break;
+    case '/':
+        printf ("Divisão = %d\n", numA / numB); break;
+    default:
+    printf ("Operador desconhecido"); }
+return 0;
+}
+SAIDA:
+Escolha um operado: < + - * / >:
+Soma = 10
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+COMANDO switch sem break: 
+
+#include <stdio.h>
+int main()
+{
+int numA = 8, numB = 2; char op;
+printf ("Escolha um operador: < + - * / > ");
+op = getchar();
+switch(op) {
+case '+':
+printf ("Soma = %d\n", numA + numB);
+case '-':
+printf ("Subtração = %d\n", numA - numB);
+case '*':
+printf ("Multiplicação = %d\n", numA * numB);
+case '/':
+printf ("Divisão = %d\n", numA / numB);
+default:
+printf ("Operador desconhecido"); }
+return 0;
+}
+SAIDA: + 
+Escolha um operador: < + - * / >
+Soma = 10 
+Subtração = 6
+Multiplicação = 16
+Divisão = 4
+Operador desconhecido
+SAIDA:-
+Escolha um operador: < + - * / >
+Subtração = 6
+Multiplicação = 16
+Divisão = 4
+Operador desconhecido
+SAIDA: *
+Escolha um operador: < + - * / >
+Multiplicação = 16
+Divisão = 4
+Operador desconhecido
+
+SEM O BREAK O CONTROLE "VAZA" DE UM CASO PARA O OUTRO
+
+
+#include <stdio.h>
+int main()
+{
+int numA = 8, numB = 2; char op;
+printf ("Escolha um operador: < + - * / > ");
+op = getchar();
+switch(op) {
+    case '+':
+        printf ("Soma = %d\n", numA + numB); break;
+    case '-':
+        printf ("Subtração = %d\n", numA - numB); break;
+    case '*':
+        printf ("Multiplicação = %d\n", numA * numB); break;
+    case '/':
+        if (numB != 0) {
+            printf (" A divisão pode ser realizada!\n");
+            printf (" Divisão = %d\n", numA / numB); } break;
+    default:
+        printf ("Operador desconhecido"); }
+return 0;
+}
+SAIDA:
+Escolha um operador: < + - * / > 
+A divisão pode ser realizada!
+Divisão = 4
+
+PODEMOS USAR QUALQUER COMANDO ASSOSSIADO A UM CASE!
+
+
+
