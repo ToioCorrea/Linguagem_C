@@ -21,3 +21,5 @@ printf("Você tem %d anos de idade, %.2f de altura e é do sexo %c", idade, altu
 return 0;
 }
 
+
+
