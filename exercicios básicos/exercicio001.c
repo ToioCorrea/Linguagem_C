@@ -15,3 +15,4 @@ printf("Olá Toio");
 return 0;
 //return 0 = informa se esta tudo ok
 }
+
