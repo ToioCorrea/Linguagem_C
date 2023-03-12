@@ -18,3 +18,4 @@ printf("entrada = %c, saida = %c", c, ch);
 return 0;
 
 }
+
