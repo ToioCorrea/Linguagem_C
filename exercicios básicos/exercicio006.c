@@ -31,6 +31,8 @@ return 0;
 
 }
 
+
+
 /* \n = pular linha
 Comando “const” = Sintaxe: const <tipo_de_dado> < nome_da_constante > = <valor>;
 
