@@ -1,0 +1,3 @@
+exercicio 014: na hora de executar o programa, não aparece o sexo.
+exercicio 021: não soube misturar a latas e galoes para achar o preço menor.
+
