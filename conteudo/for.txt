@@ -9,10 +9,10 @@ instruções;
 Ø inicialização: executada uma única vez antes do início do laço.
 - Em geral é uma atribuição a uma variável de controle.
 
-Ø condição: avaliada toda vez que o laço for iniciado ou reiniciado. Se verdadeira, o corpo do laço é executado. Se falsa, o laço é encerrado e o controle passa para a instrução seguinte.
+Ø condição(teste): avaliada toda vez que o laço for iniciado ou reiniciado. Se verdadeira, o corpo do laço é executado. Se falsa, o laço é encerrado e o controle passa para a instrução seguinte.
 - Expressão lógica que controla o laço.
 
-Ø alteração: executada sempre ao final de cada repetição do laço.
+Ø alteração(incremento): executada sempre ao final de cada repetição do laço.
 - Define a forma com que a variável de controle será alterada a cada repetição do laço.
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
