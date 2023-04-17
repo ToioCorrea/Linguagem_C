@@ -1,0 +1,90 @@
+O comando break
+
+Às vezes é preciso interromper um laço antes que a sua condição torne-se falsa.Nessas ocasiões, podemos empregar o comando break que, quando não estáassociado ao switch, serve para parar uma repetição.
+
+ØProvoca a saída imediata do laço ou switch;
+
+ØPode ser usado no corpo de qualquer estrutura de laço em C (for, while e do-while) ou switch;
+
+ØSe estiver em estrutura de laço encadeado, afetará apenas o laço que o contéme os laços internos a ele
+
+LAÇO DO-while
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int num = 0;
+do
+{
+printf (" %d ",num);
+num++;
+if (num==3)
+break;
+}
+while (num <= 5);
+return 0;
+}
+SAÍDA:
+0 1 2
+
+
+LAÇO while
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int num = 0;
+while (num <= 5)
+{
+    printf (" %d ", num);
+    num++;
+    if (num==3)
+      break;
+}
+return 0;
+}
+SAÍDA:
+0 1 2
+
+LAÇO for:
+
+ENTRADA:
+#include <stdio.h>
+2. int main()
+{
+int num;
+for (num = 0; num <= 5; num++)
+{
+    if (num==3)
+     break;
+    rintf (" %d ", num);
+}
+return 0;
+}
+SAÍDA:
+0 1 2
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+break : números primos
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int num, k;
+printf ("Digite um número natural: ");
+scanf ("%u", &num);
+for (k = 2; k <= num - 1; k++)
+    if (num % k == 0)
+        break;
+    if (k == num)
+     printf ("O número é primo");
+    else
+     printf ("O número não é primo");
+}
+SAÍDA:
+Digite um número natural: 5
+O número é primo 
