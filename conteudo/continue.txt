@@ -1,0 +1,67 @@
+O comando continue 
+
+Às vezes é preciso forçar o início da próxima iteração do laço, descartando todasas instruções restantes do código atual. Nessas ocasiões, podemos empregar o comando continue que salta para a próxima iteração.
+
+ØEm laços for é feita a alteração da variável de controle e depois a verificação de condição;
+
+ØEm laços while e do-while a execução é desviada para a verificação de condição.
+
+LAÇO DO-WHILE 
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int num = 0;
+do
+{
+if (num==3){
+num++;
+continue;}
+printf (" %d ",num);
+num++;
+}
+while (num <= 5);
+return 0;
+}
+SAÍDA:
+0 1 2 4 5
+
+LAÇO WHILE
+
+ENTRADA:
+
+#include <stdio.h>
+int main()
+{
+int num = 0;
+while (num <= 5)
+{
+    if (num==3){
+     num++;
+     continue;}
+    printf (" %d ", num);
+    num++;
+}
+return 0;
+}
+SAÍDA:
+0 1 2 4 5
+
+LAÇO FOR 
+
+#include <stdio.h>
+int main()
+{
+int num;
+for (num = 0; num <= 5; num++)
+{
+    if (num==3)
+     continue;
+    printf (" %d ", num);
+}
+return 0;
+}
+SAÍDA:
+0 1 2 4 5 
+
