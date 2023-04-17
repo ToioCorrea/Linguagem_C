@@ -1,0 +1,35 @@
+O laço do-while
+
+Usado para repetir algo com teste no fim (pós-condição)
+
+OBS: tem um uso bastante efetivo na validação de dados de entrada, pelo teclado
+
+As instruções serão executadas ao menos uma vez,mesmo que a condição nunca seja verdadeira!
+
+Sintaxe:
+do {
+instruções;
+}
+while(condição);
+
+Ø condição: enquanto for verdadeira, o corpo do laço é executado. Se falsa, o laço é encerrado e o controle passa para a instrução seguinte.
+    - Expressão lógica que controla o laço.
+
+Ø instruções: pode ser uma única instrução ou um bloco de instruções.
+    - Para um bloco de instruções, deve-se utilizar “{}”.
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int num = 0;
+do
+{
+    printf (" %d ",num);
+    num++;
+}
+while (num <= 5);
+return 0;
+}
+SAÍDA:
+0 1 2 3 4 5
