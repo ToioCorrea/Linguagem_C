@@ -1,0 +1,110 @@
+O laço WHILE
+
+
+OBS: 
+-Caso a condição nunca seja verdadeira as instruções não serão executadas
+-A estrutura do laço while possui os mesmos elementos da estrutura for, distribuídos de forma diferente.
+
+Sintaxe:
+while (condição)
+{
+instruções;
+}
+
+Ø condição: enquanto for verdadeira, o corpo do laço é executado. Sefalsa, o laço é encerrado e o controle passa para a instrução seguinte.
+    - Expressão lógica que controla o laço.
+
+Ø instruções: pode ser uma única instrução ou um bloco de instruções.
+    - Para um bloco de instruções, deve-se utilizar “{}”.
+
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int num = 0;
+while (num <= 5)
+{
+printf (" %d ", num);
+num++;
+}
+return 0;
+}
+SAÍDA:
+0 1 2 3 4 5 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+while : Encadeado
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int num;
+long int resp;
+while (1) //Condição sempre verdadeira(loop infinito)!
+{
+    printf (" Digite o número: ");
+    scanf (" %d", &num);
+    resp = 1;
+    while (num > 1)
+     resp *= num--;
+    printf (" O fatorial é: %ld \n\n", resp);
+}
+return 0;
+}
+SAÍDA:
+Digite o número: 3
+O fatorial é: 6
+
+Digite o número: 4
+O fatorial é: 24
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+while : término numérico 
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+int num;
+printf ("Digite um número < 0 finaliza >\n");
+scanf ("%d", &num);
+while (num != 0)
+{
+    printf ("Quadrado de %d = %d\n", num, num * num);
+    scanf ("%d", &num);
+}
+return 0;
+}
+SAÍDA:
+Digite um número <0 finaliza>
+3
+Quadrado de 3 = 9
+6
+Quadrado de 6 = 36
+0
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+while : Término caractere
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+char c;
+printf ("Digite uma letra < 'F' finaliza >\n");
+while (c != 'F')
+    c = getchar();
+return 0;
+}
+SAÍDA:
+Digite uma letra < 'F' finaliza >
+a 
+b 
+f 
+F 
+
