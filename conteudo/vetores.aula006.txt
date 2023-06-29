@@ -1,0 +1,456 @@
+Vetor: é um conjunto de posições consecutivas de memória, identificadas por um mesmo nome, individualizadas por índices e cujo conteúdo é do mesmo tipo;
+    Ø(importância, definição, declaração, inicialização, acessando e atribuindo valor a um elemento, armazenando e lendo dados, limite de tamanho, busca em vetores, ordenação de vetores).
+
+
+Vetor: pode ser visto como um conjunto de elementos para armazenamento de dados de um mesmo tipo → conjunto homogêneo de dados
+    É um dos tipos mais simples de estruturas de dados;
+    Os elementos são guardados em uma sequência contígua na memória (um após o outro) → vetor unidimensional;
+    Elementos são identificados por um mesmo nome e individualizados por índices.
+
+
+
+Sintaxe: <tipo> <nome do vetor>[número de elementos];
+    Ø tipo: tipo de dado das variáveis que compõem o vetor (char, int, float, etc.);
+    Ø Nome do vetor: nome usado para referenciar o vetor;
+    Ø número de elementos: quantidade de variáveis que farão parte do vetor. Pode ser uma constante, variável ou expressão cujo valor seja do tipo integral (char, int e seus derivados).
+
+
+Exemplo:
+float notas[30]; //declara um vetor chamado
+                //‘notas’, que possui trinta
+                //elementos do tipo float.
+
+Declarado um vetor, é necessário definir como referenciar seus elementos
+individualmente;
+    Isso é feito por “nome_do_vetor[indice_do_elemento]”;
+        Ex.:float nota = notas[3];
+
+ATENÇÃO: note que o número entre ‘[‘ e ‘]’ tem um significado diferente nas seguintes situações:
+    Declaração: o número corresponde ao tamanho do vetor;
+    Referência a elemento: o número indica a posição (índice) do elemento no vetor.
+
+ATENÇÃO: na linguagem C, o primeiro elemento tem índice 0 (zero):
+    “notas[3]” acessa o quarto elemento do vetor!
+
+Exemplo:
+...
+int notas[10]; // Declara vetor de inteiros
+              // com 10 posições
+
+notas[2] = 7;    // Atribui o valor 7 à
+                // posição 3 do vetor
+
+int notas[10];
+int i = 2;
+notas[i] = 7; // Atribui o valor 7 à
+             // posição 3 do vetor
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Vetor – Atribuindo valor a um elemento
+
+Ø valor: pode ser uma constante, variável ou expressão.
+Exemplo:
+...
+float notas [200]; // declaração do vetor (200 é o tamanho do vetor).
+notas [3] = 8.5; /* atribuição de valor a um elemento do vetor (3 é o índice do vetor),ou seja, a quarta posição do vetor recebe o valor 8.5.*/
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Manipulação de Dados em Vetores
+
+Ex.: ler as notas de uma classe de 2000 alunos, armazená-las e então calcular a média da turma:
+
+#include <stdio.h>
+
+int main(){
+   float notas[2000], media= 0.0;
+   int i;
+
+   printf(“Entre com as 2000 notas:\n”);
+   for (i=0; i < 2000; i++) {
+   scanf(“%f”,&notas[i]);
+   media += notas[i];
+   }
+
+   media /= 2000.0;
+   printf(“Média: %5.2f\n”, media);
+
+   return 0;
+}    
+
+
+
+
+No exemplo anterior, é possível existir uma situação em que não se sabe quantos alunos realmente fizeram provas no semestre;
+    Só se sabe que não existem mais de 2000 alunos na turma;
+
+Como poderíamos escrever um programa que lesse as notas disponíveis para a turma e calculasse a média?
+Possível solução: ler as notas até que seja inserida uma nota negativa (critério de parada)
+
+
+
+Exemplo:
+
+#include <stdio.h>
+int main(){
+    float notas[2000], media = 0.0;
+    int numNotas = 0; // Contador de notas efetivamente lidas
+
+    printf("Entre com as notas:\n");
+    do {
+        scanf("%f",&notas[numNotas]);       // Lê a nota
+
+        if (notas[numNotas] >= 0.0) {       // Verifica se é uma nota válida
+            media += notas[numNotas];
+            numNotas++;
+        }
+        else {                              // Caso não seja, é condição de parada
+            break;
+        }   
+    } while (numNotas<2000);                // Não ultrapassa o limite do vetor
+
+    media = (numNotas>0)?(media/numNotas):0.0; // Completa o cálculo da média           // Completa o cálculo da média
+    printf("Média: %5.2f\n", media);
+
+return 0;
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Inicialização de vetores
+
+Sintaxe: <tipo> <nome do vetor>[número de elementos] = {valores iniciais};
+Ø valores iniciais: devem ser fornecidos entre chaves e separados por vírgulas. Sãoarmazenados a partir da posição 0 do vetor, na ordem em que são listados. Podem ser constantes, variáveis ou expressões.
+
+Observação: O tamanho de vetor pode ser omitido na inicialização, pois ele é identificado pelo compilador pelo número de valores listados.
+
+Exemplo:
+int vet [5] = {8, 4, 2, 5, 9}; ou int vet [] = {8, 4, 2, 5, 9};
+// inicializa o vetor chamado “vet” com os elementos 8, 4, 2, 5, 9.
+
+
+
+Ex.: int vetor[3] = {50, 25, 10};
+         Neste exemplo é criado um vetor com 3 elementos;
+         Os elementos são inicializados com os valores 50 (elemento de índice 0), 25 (elemento de índice 1) e 10 (elemento de índice 2).
+
+ATENÇÃO: nesta forma de inicialização, caso o número de valores entre as chaves seja menor que o tamanho do vetor, os elementos restantes serão inicializados com 0
+
+    Ex.: int vetor[] = {50, 25, 10};
+         Exte exemplo funciona da mesma forma que o anterior;
+         O tamanho do vetor é identificado pelo número de valores passados na inicialização.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Verificação de limites em vetores
+
+
+A linguagem C não verifica se um programa respeita ou não o limite definido para um vetor;
+    Se o programa transpuser os limites de um vetor durante uma operação de atribuição, as posições de memória subsequentes ao vetor terão seu conteúdo sobrescrito;
+         O programa terá comportamento imprevisível!
+
+Em C, cabe ao programador garantir a verificação de limites em vetores.
+
+
+Exemplo:
+
+ENTRADA: 
+#include <stdio.h>
+    int main() {
+    int vetor[3], i;
+    vetor[0] = 1;
+    vetor[1] = 2;
+    vetor[2] = 3;
+
+    for (i=0; i<=3; i++)
+        printf(“Valor=%d\n”, vetor[i]);
+
+    return 0;
+}
+SAIDA:
+Valor=1
+Valor=2
+Valor=3
+Valor=1670971486
+
+Vetor – Acessando um elemento
+
+Exemplo:
+int vet [5] = {8, 4, 2, 5, 9};
+vet [1];
+
+/*
+0 => 8
+1 => 4
+2 => 2
+3 => 5
+4 => 9
+*/
+
+// acessa o segundo elemento do vetor chamado “vet”, ou seja, o elemento 4.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Vetor – Armazenando e lendo dados do vetor
+
+Uma solução seria:
+Ø Definir uma constante para o limite máximo do número de notas;
+Ø Forçar a saída do laço caso o limite seja excedido;
+Ø Especificar um critério de parada, para o laço.
+
+#include <stdio.h>
+#define LIM 60
+int main()
+{
+    float notas[LIM], soma = 0.0;
+    int i = 0;
+    printf ("Digite as notas ou <0> para sair:\n");
+    do
+    {
+        if (i >= LIM)
+        {
+            printf ("Máximo excedido.\n");
+            i++;
+            break;
+        }
+        scanf ("%f",&notas[i]); // armazenando notas
+        soma += notas[i]; // lendo notas
+    } while (notas[i++] > 0.0);
+    printf ("Média: %5.2f\n", soma/(i-1));
+    return 0;
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Busca em vetores
+
+A forma mais simples de realizar busca em um vetor é percorrer todos os elementos do vetor até encontrar (ou não) o valor procurado;
+    Esta forma de busca é chamada de busca linear;
+    No pior caso, todos os elementos do vetor são verificados;
+    Existem outras formas de busca em vetores mais eficientes, que serão tratadas em cursos futuros.
+
+
+Exemplo (busca linear):
+
+
+
+#include <stdio.h>
+int main() {
+    int vetor[8]= {7, 10, 5, 4, 3, 6, 8, 9};
+    int x = 8; // Valor a ser buscado no vetor
+    int i = 0;
+
+    while ((vetor[i]!=x) && (i<8))
+        i++;
+
+    if (i<8)
+        printf(“Valor na pos. %d\n”, i);
+    else
+        printf(“Valor não encontrado.\n”);
+    return 0;
+}
+
+
+LINHA 247 a 248
+Declaração e inicialização do vetor, valor a ser buscado (na variável x) e variável auxiliar i.
+
+
+LINHA 251 e 252
+Laço em que a busca ocorre:
+• O programa percorre o vetor verificando cada elemento;
+• Caso valor procurado não tenha sido encontrado na posição i e a busca não chegou ao final do vetor, o índice i do elemento a ser inspecionado é incrementado.
+
+LINHA 254 a 257
+Verifica o resultado da busca realizada no laço anterior
+• Se (i < 8), o laço encerrou antes de chegar ao final do vetor, então o valor x foi encontrado;
+• Caso contrário, a busca chegou ao final do vetor → valor x não encontrado.
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Ordenação por Seleção
+
+Exemplo: |5|4|9|6|3|2|
+
+Ciclo 1:
+Percorre índices de 0 a 5
+Maior elemento encontrado = 9 (índice 2)
+Troca elementos de índice 2 e 5
+|5|4|2|6|3|9|
+
+Ciclo 2:
+Percorre índices de 0 a 4
+Maior elemento encontrado = 6 (índice 3)
+Troca elementos de índice 3 e 4
+|5|4|2|3|6|9|
+
+Ciclo 3:
+Percorre índices de 0 a 3
+Maior elemento encontrado = 5 (índice 0)
+Troca elementos de índice 0 e 3
+|3|4|2|5|6|9|
+
+Ciclo 4:
+Percorre índices de 0 a 2
+Maior elemento encontrado = 4 (índice 1)
+Troca elementos de índice 1 e 2
+|3|2|4|5|6|9|
+
+Ciclo 5:
+Percorre índices de 0 a 1
+Maior elemento encontrado = 3 (índice 0)
+Troca elementos de índice 0 e 1
+|2|3|4|5|6|9|
+
+
+#include <stdio.h>
+int main()
+{
+    int vetor[6] = {5, 4, 9, 6, 3, 2};
+    int i, j, jm, temp;
+    for (j = 5; j >= 1; j--)
+    {//j: limite da última posição
+        for (i = 0; i < j; i++)
+    { //Compara par a par:
+     if (vetor[i] > vetor [i+1])
+     {
+        temp = vetor[jm];
+        vetor [i] = vetor [i+1];
+        vetor [i+1] = temp;
+     }
+    }
+}
+for (i = 0; i < 6; i++)
+printf (" %d ", vetor[i]);
+return 0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Ordenação de vetores
+
+
+Além da busca em vetores, outro problema muito comum é a necessidade de ordenar um dado vetor de dados;
+    Ex.:
+         Entrada:|5|4|2|6|3|9|
+         Saída:|2|3|4|5|6|9|
+
+Existem diversos algoritmos de ordenação propostos, que realizam a operação de ordenação com maior ou menor eficiência;
+    Eficiência: número de comparações entre elementos, quantidade de memória adicional necessária etc.
+
+Será visto aqui um algoritmo simples: o método bolha (ou bubble sort);
+
+
+
+Ordenação de vetores: bubble sort
+
+
+Ideia básica: replicar o efeito de bolhas de ar dentro da água
+    Os maiores indivíduos “sobem” para as posições finais do vetor;
+    São feitas comparações entre pares de indivíduos e, caso estejam em ordem invertida, suas posições são trocadas.
+
+Ex.: |5|4|9|6|3|2| (ordem crescente)
+    Passagem 1: último elemento a ser verificado está na posição de índice 5
+         |5|4|9|6|3|2| → Realiza troca!
+         |4|5|9|6|3|2| → Não realiza troca
+         |4|5|9|6|3|2| → Realiza troca!
+         |4|5|6|9|3|2| → Realiza troca!
+         |4|5|6|3|9|2| → Realiza troca e encerra passagem.
+
+
+    Passagem 2: último elemento a ser verificado está na posição de índice 4
+         |4|5|6|3|2|9| → Não realiza troca
+         |4|5|6|3|2|9| → Não realiza troca
+         |4|5|6|3|2|9| → Realiza troca!
+         |4|5|3|6|2|9| → Realiza troca e encerra passagem.
+
+
+    Passagem 3: último elemento a ser verificado está na posição de índice 3
+         |4|5|3|2|6|9| → Não realiza troca
+         |4|5|3|2|6|9| → Realiza troca!
+         |4|3|5|2|6|9| → Realiza troca e encerra passagem.
+
+
+    Passagem 4: último elemento a ser verificado está na posição de índice 2
+         |4|3|2|5|6|9| → Realiza troca!
+         |3|4|2|5|6|9| → Realiza troca e encerra passagem.
+
+
+    Passagem 5: último elemento a ser verificado está na posição de índice 1
+         |3|2|4|5|6|9| → Realiza troca e encerra algoritmo
+
+
+Vetor final: |2|3|4|5|6|9|
+
+
+#include <stdio.h>
+int main() {
+    int vetor[6]= {5, 4, 9, 6, 3, 2};
+    int i, j, temp;
+
+    for (j=5; j > 0; j--) { //j: limite da última posição
+        
+        for (i=0; i < j; i++){
+        // Compara par a par:
+        if (vetor[i] > vetor[i+1]) {
+            temp = vetor[i];
+            vetor[i] = vetor[i+1];
+            vetor[i+1] = temp;
+        }
+    }
+}
+return 0;}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+EXEMPLO DE CÓDIGOS:
+
+
+1)
+#include<stdio.h>
+#include<conio.h>
+int main(void)
+{
+  float notas[5] = {7, 8, 9.5, 9.9, 5.2};
+  // declarando e inicializando o vetor notas
+  
+  printf("Exibindo os Valores do Vetor \n\n");
+  printf("notas[0] = %.1f\n", notas[0]);
+  printf("notas[1] = %.1f\n", notas[1]);
+  printf("notas[2] = %.1f\n", notas[2]);
+  printf("notas[3] = %.1f\n", notas[3]);
+  printf("notas[4] = %.1f\n", notas[4]);
+  
+  getch();
+  return 0;
+}
+
+
+2)
+#include<stdio.h>
+#include<conio.h>
+int main(void)
+{
+  int i;
+  float notas[5] = {7, 8, 9.5, 9.9, 5.2};
+  // declarando e inicializando o vetor notas
+  
+  printf("Exibindo os Valores do Vetor \n\n");
+  
+  for( i = 0 ; i <= 4; i++)
+  {
+    printf("notas[%d] = %.1f\n",i, notas[i]);
+  }
+  
+  getch();
+  return 0;
+}
