@@ -1,0 +1,194 @@
+MATRIZ
+
+
+Estrutura do tipo vetor com duas ou mais dimensões (vetor cujos elementos são vetores).
+
+Assim como um vetor, contém dados de um mesmo tipo, que compartilham o mesmo nome e que ocupam
+posições consecutivas de memória. As nomenclaturas elemento e índice utilizadas para vetor são também
+compartilhadas para matriz.
+
+Apresentam diversas aplicações úteis, como: armazenamento de imagens, cálculos envolvendo álgebra
+linear, dados de clientes, etc
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+MATRIZ BIDIMENCIONAL 
+
+Ø Corresponde a forma mais simples de uma matriz.
+
+Ø Pode ser interpretada como uma organização de dados em tabela (linhas x colunas).
+
+Sintaxe: <tipo> <nome da matriz>[linha][coluna];
+
+#define LIN 20
+#define COL 50
+int main()
+{
+int mat[LIN][COL];
+return 0;
+}
+
+Como os vetores, matrizes também podem ser inicializadas na declaração.
+
+#include <stdio.h>
+#define N 3
+int main()
+{                                         1 2 3 
+int mat[N][N] = { {1, 2, 3},              4 5 6
+                  {4, 5, 6},              7 8 9
+                  {7, 8, 9} };
+return 0;
+}
+
+
+#include <stdio.h>
+#define N 20
+int main() {
+int m1[N][N], m2[N][N], m3[N][N];
+int l, c, nlin, ncol;
+printf("Entre com os num de linhas e colunas\n");
+scanf("%d %d",&nlin,&ncol); /* nlin e ncol < 20*/
+printf("Entre com os elementos da matriz 1\n");
+for (l=0; l < nlin; l++) //percorre linhas
+    for (c=0; c < ncol; c++) //percorre colunas
+        scanf("%d",&m1[l][c]);
+printf("Entre com os elementos da matriz 2\n");
+for (l=0; l < nlin; l++) //percorre linhas
+    for (c=0; c < ncol; c++) //percorre colunas
+        scanf("%d",&m2[l][c]);
+/* soma as matrizes */
+for (l=0; l < nlin; l++)
+    for (c=0; c < ncol; c++)
+        m3[l][c] = m1[l][c] + m2[l][c];
+/* imprime o resultado */
+printf("Resultado: \n");
+for (l=0; l < nlin; l++) {
+    for (c=0; c < ncol; c++)
+        printf("%2d ",m3[l][c]);
+    printf("\n");
+}
+return 0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Matriz Bidimensional – Atribuindo valor aos elementos
+
+#include <stdio.h>
+int main()
+{
+int i, j, mat[3][3];
+mat[0][0] = 1;
+mat[0][1] = 2;
+mat[0][2] = 3;                          1 2 3
+                                        4 5 6   
+mat[1][0] = 4;                          7 8 9 
+mat[1][1] = 5;
+mat[1][2] = 6;
+
+mat[2][0] = 7;
+mat[2][1] = 8;
+mat[2][2] = 9;
+return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Matriz Bidimensional – Percorrendo a matriz
+
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{                 
+int i, j, mat[4][3];
+for ( i = 0; i < 4; i++ )
+    for ( j = 0; j < 3; j++ )
+     printf (" %d %d ", i, j);
+return 0;
+}
+SAÍDA:
+0 0  0 1  0 2  1 0  1 1  1 2  2 0  2 1  2 2  3 0  3 1  3 2
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Matriz Bidimensional – Armazenando e lendo dados
+
+// Armazenando dados na matriz
+
+#include <stdio.h>
+int main()
+{
+int i, j, mat[4][3];
+for ( i = 0; i < 4; i++ )
+    for ( j = 0; j < 3; j++ )
+     scanf ("%d", &mat[ i ][ j ]);
+return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Matriz N-dimensional – Definição e Declaração
+
+É um vetor cujos elementos são vetores.Podemos estender esta definição para matrizes N-dimensionais.
+
+Tridimensionais: vetores cujos elementos são matrizes bidimensionais (vetores de vetores de dados). Quadrimensionais...
+
+#include <stdio.h>
+int main()
+{
+int mat[2][3][4] = {
+                     { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12} },
+                     { {0, 0, 0, 0}, {5, 6, 7, 8}, {0, 0, 0, 0} },
+                   };
+return 0;
+}
+
+
+
+Podemos utilizar uma matriz tridimensional para armazenar, por exemplo,
+a vazão afluente em um dado dia, mês e ano.
+
+#include <stdio.h>
+int main()
+{
+    float vazao[31][12][3000];
+    vazao[17][3][2018] = 9.0;
+    return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Matriz – Linearização de Índices
+
+Refere-se à representação de uma matriz usando vetor simples.
+Na prática, o compilador faz isso!
+
+Quando declaramos uma matriz como int mat[2][3] o compilador aloca 6 posições
+consecutivas de memória para mat.
+
+1 2 3                    1 2 3 4 5 6
+4 5 6                 
+
+Podemos então declarar int mat[6], mas perderíamos a simplicidade de uso dos índices
+em forma de matriz (mat[1][0], por exemplo, não funcionaria).
+
+
+Ao invés da matriz int mat[2][3]; considere o vetor int mat[6];
+
+Como acessamos o elemento 4 da matriz (mat[2][3]) no vetor (mat[6])?
+
+1 2 3
+4 5 6
+
+Para acessar posição [i][j] no vetor mat
+mat [i * 3 + j]
+onde 0 ≤ i ≤ 1 e 0 ≤ j ≤ 2
+
+1 2 3 4 5 6                                     Primeira linha: mat[0] até mat[2]
+                                                Segunda linha: mat[3] até mat[5]   
+Para acessar posição [1][0] no vetor mat
+mat [1 * 3 + 0]
+mat[3] → 4
+
