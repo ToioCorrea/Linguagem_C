@@ -1,0 +1,415 @@
+STRINGS
+
+
+%s – é o código de impressão associado a uma string.
+
+Em C, uma string é uma sequência de caracteres terminada pelo caractere especial NULL,
+representado por '\0'.
+
+A sequência de caracteres é armazenada em vetores do tipo char.
+Strings são usadas para armazenar e manipular palavras, frases e textos.
+
+Devido à necessidade do '\0', os vetores que armazenam strings devem ter sempre uma
+posição a mais do que o número de caracteres a serem armazenados.
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+printf ("\'\\0\'ou NULL tem código ASCII = %d \n", '\0');
+printf ("O número 0 (zero) tem código ASCII = %d \n", '0');
+return 0;
+}
+SAÍDA:
+'\0' OU NULL tem código ASCII = 0
+O numero 0 (zero) tem código ASCII = 48
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Constantes strings
+
+O compilador da linguagem C considera tudo que está entre aspas duplas uma
+constante do tipo string.
+
+- Na sintaxe própria para string, o '\0' é incluído automaticamente pelo compilador.
+
+Exemplo:
+char frase[] = "Seja bem vindo";
+
+Equivalente a:
+char frase[15] = "Seja bem vindo";
+
+01234567891011121314
+seja bem    vindo 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Variáveis strings
+
+Variáveis do tipo string nada mais são do que vetores com elementos do tipo char;
+- Na sintaxe padrão de vetores, devemos acrescentar o '\0'.
+
+Equivalente a:
+char frase[] = {'S', 'e', 'j', 'a', ' ', 'b', 'e', 'm', ' ', 'v', 'i', 'n', 'd', 'o', '\0'};
+char frase[15] = {'S', 'e', 'j', 'a', ' ', 'b', 'e', 'm', ' ', 'v', 'i', 'n', 'd', 'o', '\0'};
+
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+char frase1[] = "Seja bem vindo";
+char frase2[] = {'S', 'e', 'j', 'a', ' ', 'b', 'e', 'm', ' ', 'v', 'i', 'n', 'd', 'o', '\0'};
+printf ("Frase1 = %s \n", frase1);
+printf ("Frase2 = %s \n", frase2);
+return 0;
+}
+SAÍDA:
+Frase1 = Seja bem vindo
+Frase2 = Seja bem vindo
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Armazenando strings com scanf()
+
+Ø A função scanf() recebe dados até encontrar o primeiro caractere em
+branco. Ao encontrá-lo, substitui-o por '\0', finalizando a string
+armazenada.
+
+Ø Para ler strings incluindo espaços use a função scanf() com %[ˆ\n]. Ela
+recebe todos os dados digitados e no final, o caractere '\n' (ENTER) é
+substituído pelo caractere '\0' (fim da string) → para vetores do tipo
+char.
+
+Ø Para strings, o & não deve ser utilizado na função scanf() (warning).
+
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+char frase[15];
+printf ("Digite a frase: ");
+scanf ("%s", frase);
+printf ("Frase armazenada: %s", frase);
+return 0;
+}
+SAÍDA:
+Digite a frase: Seja bem vindo
+Frase armazenada: Seja
+
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+char frase[15];
+printf ("Digite a frase: ");
+scanf ("%[^\n]", frase);
+printf ("Frase armazenada: %s", frase);
+return 0;
+}
+SAÍDA:
+Digite a frase: Seja bem vindo
+Frase armazenada: Seja bem vindo
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Armazenando strings com fgets() e gets()
+
+A função fgets() recebe dados até encontrar o caractere de nova linha '\n' (ENTER) o atingir o limite máximo de n – 1 caracteres (reserva espaço para o '\0'). Pode ser usada para ler dados também de arquivos-texto.
+
+Sintaxe: fgets (variável-string, tamanho, fonte);
+
+Ø variável-string: variável para armazenamento dos caracteres;
+Ø tamanho: número de caracteres para leitura mais um ('\0');
+Ø fonte: local de entrada dos dados (para o teclado use stdin).
+
+A função gets() não é segura, pois não permite especificar o número máximo de caracteres para leitura, podendo pode ocorrer vazamento de memória.
+
+Sintaxe: gets (variável-string);
+
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+char frase[15];
+printf ("Digite a frase: ");
+fgets (frase, 15, stdin);
+printf ("Frase armazenada: %s", frase);
+return 0;
+}
+
+SAÍDA PRESSIONANDO <ENTER>              EXTRAPOLANDO O TAMANHO N - 1
+Digite a frase: Seja bem vindo          Digite a frase: Seja bem vindo NA Unicamp
+Frase armazenada: Seja bem vindo        Frase armazenada: Seja bem vindo
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Lendo strings com printf()
+
+A leitura de uma string consiste em dois passos:
+    • Reservar um espaço de memória para armazená-la (variável);
+    • Chamar uma função de leitura que receba os dados do teclado e os armazene na variável (scanf, fgets, ...);
+
+A função printf() utiliza o código de impressão "%s" para identificar a impressão de
+uma string. A string é impressa como armazenada até o limite do tamanho do vetor.
+
+#include <stdio.h>                          #include <stdio.h>
+int main()                                  int main()
+{                                           {
+    char frase[15] = "Seja bem vindo";           char frase[15] = "Seja bem vindo";
+    printf ("%s", frase);                        printf ("%s", frase);
+    return 0;                                    return 0;
+}                                           }
+
+SAÍDA:                                          SAÍDA:
+Seja bem vindo                                      Seja bem v
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Lendo strings com fputs() e puts()
+
+
+A função fputs() lê dados até encontrar o '\0' (fim da string). Pode ser usada para ler dados também de arquivos-texto.
+
+Sintaxe: fputs (variável-string, fonte);
+Ø variável-string: variável para armazenamento dos caracteres;
+Ø fonte: local de saída dos dados (para o teclado use stdout).
+
+A função puts reconhece o '\0' como final da string, e imprime automaticamente um '\n' (ENTER) no final do texto.
+
+Sintaxe: puts (variável-string);
+
+#include <stdio.h>
+int main()
+{
+char frase[15] = "Seja bem vindo";
+fputs (frase, stdout);
+return 0;
+}
+SAÍDA:
+Seja bem vindo
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+char frase[15] = "Seja bem vindo";
+puts (frase);
+return 0;
+}
+SAÍDA:
+Seja bem vindo
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Lendo parte de strings com puts()
+
+É possível imprimir parte de uma string usando a função puts().
+Basta fornecer o endereço da posição a partir da qual se deseja imprimir.
+
+#include <stdio.h>
+int main()
+{
+char frase[15] = "Seja bem vindo";
+puts (&frase[5]);
+return 0;
+}
+SAÍDA:
+bem vindo
+
+01234 567891011121314
+seja  bem    vindo 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Manipulação de strings
+
+String não é um tipo de dado básico da linguagem C. Portanto, operações simples
+como atribuição e comparação não podem ser feitas diretamente com os
+operadores disponíveis.
+
+ENTRADA:
+#include <stdio.h>
+void main(void)
+{
+char a[] = "oi";
+char b[] = "oi";
+printf (" %s == %s \n resulta em %s", a, b, a==b ? "verdade" : "falso");
+}
+SAÍDA:
+oi == oi
+resultado em falso 
+
+Estamos comparando os endereços de ‘a’ e ‘b’, não os conteúdos!
+
+Uma solução é comparar seus caracteres correspondentes, um a um.
+
+ENTRADA:
+#include <stdio.h>
+void main(void)
+{
+char a[] = "tudo bem";
+char b[] = "tudo bem";
+int i;
+for(i=0;i<8;i++)
+    if (a[i] != b[i])
+     break;
+ printf (" %s == %s\n resulta em %s", a, b, i == 8 ? "verdade" : "falso");
+}
+SAÍDA:
+tudo bem == tudo bem
+resultado em verdade
+
+tudo bem == tudo bem
+resultado em falso
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Funções de Manipulação de strings
+
+Em C existe uma biblioteca de funções para manipular strings chamada <string.h>.
+
+Algumas das funções de manipulação de strings são:
+Ø strlen
+Ø strcat
+Ø strcpy
+Ø strcmp
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+função strlen()
+
+Retorna o tamanho da string em número de caracteres. Não considera o '\0' na contagem.
+Sintaxe: strlen(string);
+
+ENTRADA:
+#include <stdio.h>
+#include <string.h>
+int main ( )
+{
+char frase [20];
+printf (" Entre com uma frase: ");
+scanf (" %[^\n]", frase);
+printf (" \'%s\' tem %ld caracteres \n", frase, strlen(frase));
+return 0;
+}
+SAÍDA:
+Entre com uma frase: Seja bem vindo
+'Seja bem vindo' tem 14 caracteres
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+função strcat()
+
+Concatena a string1 com a string2.
+Sintaxe: strcat(string1, string2);
+
+#include <stdio.h>
+#include <string.h>
+int main ( )
+{
+char nome [10], sobrenome [10];
+printf (" Digite o nome: ");
+scanf (" %[^\n]", nome);
+printf (" Digite o sobrenome: ");
+scanf (" %[^\n]", sobrenome);
+printf (" Nome completo: %s", strcat (nome, sobrenome));
+return 0;
+}
+SAÍDA:
+Digite o nome: Zeferino
+Digite o sobrenome: vaz
+Nome completo: Zeferino Vaz
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+função strcpy()
+
+
+
+    s1		s2
+	|		|
+	V		V
+  - - - -		- - - --	
+  | | | | |     |a|b|c|\0|
+  - - - -		- - - --	
+  ^ ^		    | |
+  | |		    | |
+   -|-------------|
+	---------------
+
+
+
+
+
+ENTRADA:
+Copia para a string1 o conteúdo da string2.
+Sintaxe: strcpy(string1, string2);
+
+Atenção para o resultado em função do tamanho das strings!
+Resultados diferentes em função do compilador.
+
+#include <stdio.h>
+#include <string.h>
+int main ( )
+{
+char tex1 [20] = "Seja";
+char tex2 [20] = "bem vindo";
+strcpy (tex1, tex2);
+printf ("Texto1=%s\nTexto2=%s", tex1, tex2);
+return 0;
+}
+SAÍDA:
+Texto1 = bem vindo
+Texto2 = bem vindo 
+
+ENTRADA:
+#include <stdio.h>
+#include <string.h>
+int main ( )
+{
+char tex1 [] = "Seja";
+char tex2 [] = "bem vindo";
+strcpy (tex1, tex2);
+printf ("Texto1=%s\nTexto2=%s", tex1, tex2);
+return 0;
+}
+SAÍDA:
+Texto1 = bem vindo
+Texto2 = indo 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+função strcmp()
+
+Compara a string1 com a string2 e retorna:
+Ø 0 caso as duas strings sejam iguais.
+Ø um valor menor que 0 caso string1 seja lexicograficamente menor que string2.
+Ø um valor maior que 0 caso string1 seja lexicograficamente maior que string2.
+
+Sintaxe: strcmp(string1, string2);
+
+
+ENTRADA:
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+char x[] = "um";
+char y[] = "dois";
+printf ("\n %s = %s ≡ %s", x, y, strcmp(x,y) == 0 ? "V" : "F" );
+printf ("\n %s ≠ %s ≡ %s", x, y, strcmp(x,y) != 0 ? "V" : "F" );
+printf ("\n A função retorna: %d", strcmp(x,y));
+return 0;
+}
+SAÍDA:
+um = dois ≡ F
+um ≠ dois ≡ V 
+A função retorna: 17 
+
+
