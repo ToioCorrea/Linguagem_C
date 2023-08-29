@@ -1,0 +1,396 @@
+Estruturas (ou Registros) - Importância
+
+    
+    Como armazenar valores de tipos diferentes em uma única variável? Usando estruturas!
+
+Exemplos:
+Ø Variável Aluno com RA, nome, curso e ingresso;
+Ø Variável Estoque com código, descrição, valor unitário e quantidade;
+Ø Variável Veículo com marca, modelo, ano e placa.
+
+Estrutura que contém dados de tipos diferentes, que compartilham o mesmo
+nome e que ocupam posições consecutivas de memória.
+Cada item de uma estrutura denomina-se membro.
+
+Sintaxe:
+
+struct nome-da-estrutura        // Cabeçalho de declaração da estrutura com o nome da estrutura.
+{
+tipo-1 nome-1;
+tipo-2 nome-2;                  // Lista dos tipos e nomes dos membros da estrutura.
+...
+tipo-n nome-n;
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Estruturas – Declaração de Variáveis
+
+Podemos declarar variáveis do tipo da estrutura antes de finalizar a sua definição. Cada variável contém todos os membros da estrutura.
+
+
+Variável chamada natal
+do tipo da estrutura data.
+A variável natal contém os
+membros dia, mês e ano.
+
+#include <stdio.h>
+int main()
+{
+
+    struct data
+    {   
+
+        int dia;
+        int mes;
+        int ano;
+
+    } natal;
+
+return 0;
+}
+
+Podemos declarar variáveis do tipo da estrutura em qualquer momento usando a palavra struct. Cada variável contém todos os membros da estrutura.
+
+#include <stdio.h>
+int main()
+{
+
+    struct data
+    {   
+
+        int dia;
+        int mes;
+        int ano;
+
+    };
+    struct data natal;
+
+return 0;
+}
+
+Podemos declarar variáveis do tipo da estrutura associando-a a um novo tipo de dado.
+Neste caso a palavra struct pode ser omitida na declaração das variáveis. Cada variável
+contém todos os membros da estrutura.
+
+#include <stdio.h>
+int main()
+{
+
+    typedef struct
+    {   
+
+        int dia;
+        int mes;
+        int ano;
+
+    } data; 
+    data natal;
+
+return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Estruturas – Acessando e Atribuindo Valor aos Membros
+
+Podemos acessar e atribuir valores aos membros de uma estrutura individualmente.
+
+Sintaxe:
+<nome da variável> . <nome do membro> = <valor>;
+
+#include <stdio.h>
+int main()
+{
+    struct data
+    {
+        int dia;
+        int mes;
+        int ano;
+    } natal;
+    natal.dia = 25;
+    natal.mes = 12;
+    natal.ano = 2019;
+
+return 0;
+}
+
+
+estrutura data:
+dia mes ano
+25  12  2019
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Estruturas – Inicialização (na definição da estrutura)
+
+Uma estrutura pode ser
+inicializada de forma similar
+à utilizada para vetores
+(fornecendo valores entre {}
+e separados por “,”).
+
+#include <stdio.h>
+int main()
+{
+    struct aluno
+    {
+        int RA;
+        char nome[20];
+        float nota;
+    } alu = {123456, "Pedro", 8.5};
+
+return 0;
+}
+
+
+USANDO STRUCT
+
+#include <stdio.h>
+int main()
+{
+    struct aluno
+    {
+        int RA;
+        char nome[20];
+        float nota;
+    } struct aluno alu = {123456, "Pedro", 8.5};
+
+return 0;
+}
+
+
+USANDO TYPEDEF:
+
+#include <stdio.h>
+int main()
+{
+    typedef struct
+    {
+        int RA;
+        char nome[20];
+        float nota;
+    } aluno; 
+    aluno alu = {123456, "Pedro", 8.5};
+
+return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Estruturas – Inicialização (individual)
+
+Cada membro da estrutura pode ser inicializado individualmente de forma similar à utilizada para vetores
+(acessando o membro e atribuindo o valor).
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    typedef struct
+    {   
+        int RA;
+        char nome[20];
+        float nota;
+    } aluno;
+    aluno alu;
+    alu.RA = 123456;
+    strcpy(alu.nome, "Pedro");
+    alu.nota = 8.5;
+return 0;
+}
+
+alu.nome = “Pedro”; Não é permitida!
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Estruturas – Armazenando e lendo dados
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+    typedef struct 
+    {
+        int RA;
+        char nome[20];
+        float nota;
+    } aluno;
+    aluno alu;
+    printf ("Informe RA, nome e nota:\n");
+    scanf ("%d %[^\n] %f", &alu.RA, alu.nome, &alu.nota); // armazenando
+    printf ("\nArmazenados...");
+    printf ("\nRA: %d\nNome: %s\nNota:%.1f\n", alu.RA, alu.nome, alu.nota); // lendo
+
+return 0;
+}
+SAÍDA
+Informe RA, nome e nota:
+123456
+Joao Paulo
+8.5
+
+Armazenados...
+RA: 123456
+Nome: Joao Paulo 
+Nota:8.5
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Estruturas – Cópia
+
+É possível copiar os valores de todos os membros de uma estrutura para outra do mesmo tipo através de uma atribuição simples.
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+    typedef struct 
+    {
+        int RA;
+        char nome[20];
+        float nota;
+    } aluno;
+    aluno alu1 = {123456, "João Paulo", 8.5};
+    aluno alu2 = alu1;
+    printf ("Alu2 = %d %s %.1f", alu2.RA, alu2.nome, alu2.nota);
+
+return 0;
+}
+
+SAÍDA:
+Alu2 = 123456 João Paulo 8.5
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Estruturas Encadeadas – declaração e inicialização
+
+É possível criar estruturas encadeadas, ou seja, estruturas que apresentam um ou mais de seus membros do tipo struct.
+Neste caso, tais estruturas devem ter sido previamente declaradas no programa.
+
+#include <stdio.h>
+int main()
+{
+    struct data
+    {
+        int dia;
+        int mes;
+        int ano;
+    };
+    struct aluno
+    {
+        int RA;
+        char nome[20];
+        float nota;
+        struct data ingresso;
+    } alu = {123456, "Pedro", 8.5, {15, 02, 2018}};
+
+return 0;
+}
+
+    RA     nome  nota    / dia   mes   ano
+15022018   Pedro  8.5   / 15    02   2018
+                       / Estrutura data
+
+            Estrutura aluno
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Estruturas Encadeadas – Acesso aos membros
+
+
+ENTRADA:
+#include <stdio.h>
+int main()
+{
+    struct data
+    {
+        int dia;
+        int mes;
+        int ano;
+    };
+    struct aluno
+    {
+        int RA;
+        char nome[20];
+        float nota;
+        struct data ingresso;
+    } alu = {123456, "Pedro", 8.5, {15, 02, 2018}};
+    printf("Ano de ingresso: %d", alu.ingresso.ano);
+
+return 0;
+}
+
+SAÍDA:
+Ano de ingresso: 2018
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Estruturas - Vetores e Matrizes
+
+Podemos ter estruturas contendo membros do tipo vetor / matriz ou então vetores / matrizes cujos elementos sejam estruturas.
+
+
+0     1    2    3    4
+RA    RA   RA   RA   RA
+nome nome nome nome nome
+
+
+ENTRADA:
+include <stdio.h>
+int main()
+{
+    struct aluno
+    {
+        int RA;
+        char nome[20]; // membro do tipo vetor
+    };
+    struct aluno alu[] = { // vetor de estruturas
+                          {123456, "Laura"},
+                          {234561, "Pedro"},
+                          {345612, "Lucas"},
+                          {456123, "Beatriz"},
+                          {561234, "Ana"}, };
+    for (int i = 0; i < 5; i++)
+    printf ("%d %s \n", alu[i].RA, alu[i].nome);
+
+return 0;
+}
+
+SAÍDA:
+123456 Laura
+234561 Pedro
+345612 Lucas
+456123 Beatriz
+561234 Ana
+
+ENTRADA:
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    struct aluno
+    {   
+        int RA;
+        char nome[20]; // membro do tipo vetor
+    } alu[5] ; // vetor de estruturas
+    alu[0].RA = 123456; strcpy(alu[0].nome, "Laura");
+    alu[1].RA = 234561; strcpy(alu[1].nome, "Pedro");
+    alu[2].RA = 345612; strcpy(alu[2].nome, "Lucas");
+    alu[3].RA = 456123; strcpy(alu[3].nome, "Beatriz");
+    alu[4].RA = 561234; strcpy(alu[4].nome, "Ana");
+    for (int i = 0; i < 5; i++)
+    printf ("%d %s \n", alu[i].RA, alu[i].nome);
+
+return 0;
+}
+
+SAÍDA:
+123456 Laura
+234561 Pedro
+345612 Lucas
+456123 Beatriz
+561234 Ana
+
