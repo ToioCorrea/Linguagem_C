@@ -393,4 +393,3 @@ SAÍDA:
 345612 Lucas
 456123 Beatriz
 561234 Ana
-
